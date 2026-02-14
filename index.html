@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BudgetBuddy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="kicker">Personal finance made simple</p>
+          <h1>BudgetBuddy</h1>
+          <p class="subtitle">
+            Plan your monthly budget, log transactions, and stay on track with live progress bars.
+          </p>
+        </div>
+      </header>
+
+      <section class="summary-grid" aria-label="Budget summary">
+        <article class="card">
+          <h2>Income</h2>
+          <p id="incomeTotal" class="money">$0.00</p>
+        </article>
+        <article class="card">
+          <h2>Expenses</h2>
+          <p id="expenseTotal" class="money">$0.00</p>
+        </article>
+        <article class="card highlight">
+          <h2>Remaining</h2>
+          <p id="remainingTotal" class="money">$0.00</p>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="card form-card">
+          <h2 id="formHeading">Add Transaction</h2>
+          <form id="transactionForm" class="stack">
+            <label>
+              Description
+              <input id="description" type="text" placeholder="Groceries" required />
+            </label>
+            <label>
+              Amount
+              <input id="amount" type="number" min="0" step="0.01" placeholder="75.25" required />
+            </label>
+            <label>
+              Type
+              <select id="type" required>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </label>
+            <label>
+              Category
+              <select id="category" required>
+                <option value="Housing">Housing</option>
+                <option value="Food">Food</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Health">Health</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Savings">Savings</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <div class="row wrap">
+              <button id="saveButton" type="submit">Add transaction</button>
+              <button id="cancelEdit" class="ghost hidden" type="button">Cancel edit</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Spending by Category</h2>
+          <div id="categoryBudget" class="budget-list" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="row between center">
+          <h2>Recent Transactions</h2>
+          <button id="clearAll" class="ghost" type="button">Clear All</button>
+        </div>
+        <ul id="transactionList" class="transaction-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <template id="transactionTemplate">
+      <li class="transaction-item">
+        <div>
+          <p class="tx-description"></p>
+          <p class="tx-meta"></p>
+        </div>
+        <div class="row center wrap">
+          <p class="tx-amount"></p>
+          <button class="ghost small edit-button" type="button">Edit</button>
+          <button class="ghost small delete-button" type="button">Delete</button>
+        </div>
+      </li>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
